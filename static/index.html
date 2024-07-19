@@ -56,28 +56,10 @@
             <p>Points: <span id="doroman2-points">0</span></p>
         </div>
     </div>
-    <div>
-        <button onclick="hit('doroman1')">Doroman 1 Hits</button>
-        <button onclick="hit('doroman2')">Doroman 2 Hits</button>
-    </div>
+    <button onclick="startGame()">Start Game</button>
     <script>
-        function hit(doroman) {
-            // Simulate hitting logic (you can replace this with actual logic)
-            let otherDoroman = doroman === 'doroman1' ? 'doroman2' : 'doroman1';
-            let doromanHealth = document.getElementById(doroman + '-health');
-            let otherDoromanHealth = document.getElementById(otherDoroman + '-health');
-            let doromanPoints = document.getElementById(doroman + '-points');
-
-            let hitValue = Math.floor(Math.random() * 15) + 1; // Random hit value between 1 and 15
-            otherDoromanHealth.innerText = Math.max(0, otherDoromanHealth.innerText - hitValue); // Decrease health
-
-            if (otherDoromanHealth.innerText == 0) {
-                doromanPoints.innerText = parseInt(doromanPoints.innerText) + 10; // Increase points if other Doroman is knocked out
-            }
-
-            if (parseInt(doromanPoints.innerText) >= 100) {
-                alert(doroman + " wins and starts dancing!");
-            }
+        function startGame() {
+            alert("Game started!");
         }
     </script>
 </body>

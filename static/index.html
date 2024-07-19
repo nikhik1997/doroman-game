@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doroman Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        #game-status {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .doroman {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #e9e9e9;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Doroman Game!</h1>
+    <div id="game-status">
+        <div class="doroman" id="doroman1">
+            <h2>Doroman 1</h2>
+            <p>Health: <span id="doroman1-health">100</span></p>
+            <p>Points: <span id="doroman1-points">0</span></p>
+        </div>
+        <div class="doroman" id="doroman2">
+            <h2>Doroman 2</h2>
+            <p>Health: <span id="doroman2-health">100</span></p>
+            <p>Points: <span id="doroman2-points">0</span></p>
+        </div>
+    </div>
+    <div>
+        <button onclick="hit('doroman1')">Doroman 1 Hits</button>
+        <button onclick="hit('doroman2')">Doroman 2 Hits</button>
+    </div>
+    <script>
+        function hit(doroman) {
+            // Simulate hitting logic (you can replace this with actual logic)
+            let otherDoroman = doroman === 'doroman1' ? 'doroman2' : 'doroman1';
+            let doromanHealth = document.getElementById(doroman + '-health');
+            let otherDoromanHealth = document.getElementById(otherDoroman + '-health');
+            let doromanPoints = document.getElementById(doroman + '-points');
+
+            let hitValue = Math.floor(Math.random() * 15) + 1; // Random hit value between 1 and 15
+            otherDoromanHealth.innerText = Math.max(0, otherDoromanHealth.innerText - hitValue); // Decrease health
+
+            if (otherDoromanHealth.innerText == 0) {
+                doromanPoints.innerText = parseInt(doromanPoints.innerText) + 10; // Increase points if other Doroman is knocked out
+            }
+
+            if (parseInt(doromanPoints.innerText) >= 100) {
+                alert(doroman + " wins and starts dancing!");
+            }
+        }
+    </script>
+</body>
+</html>
